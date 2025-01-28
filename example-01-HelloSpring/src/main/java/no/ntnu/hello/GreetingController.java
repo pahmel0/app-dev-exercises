@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 /**
  * A REST API controller which responds to HTTP requests for /hello.
@@ -30,6 +31,17 @@ public class GreetingController {
   public ResponseEntity<String> norwegianGreeting() {
     return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
             .body("Use /hello");
+  }
+
+  /**
+   * Responds to HTTP DELETE requests for /hello with an unauthorized status.
+   *
+   * @return a ResponseEntity with 401 status code
+   */
+  @DeleteMapping("/hello")
+  public ResponseEntity<String> deleteGreeting() {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body("Unauthorized to delete greeting");
   }
   
 }
